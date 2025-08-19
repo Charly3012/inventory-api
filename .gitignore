@@ -1,0 +1,48 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# TypeScript
+dist/
+build/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+*.log.*
+pids/
+*.pid
+*.seed
+
+# Sequelize
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# Multer
+uploads/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+coverage/
+*.tgz
+*.swp
