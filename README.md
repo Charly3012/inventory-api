@@ -6,6 +6,7 @@
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 
@@ -23,14 +24,15 @@ No está pensado para uso en producción ni incluye todas las funcionalidades co
 
 ## 🌟 Tecnologías y herramientas
 
-- 🚀 **Node.js**  
-- ⚡ **Express.js**  
-- 📝 **TypeScript**  
-- 🐬 **MySQL**
-- 📕 **Sequelize** 
-- 🐳 **Docker**  
-- 🐧 **Linux**  
-- 🟩 **Nginx Proxy Manager**  
+- 🚀 **Node.js** - Runtime de JavaScript en el servidor  
+- ⚡ **Express.js** - Framework minimalista para construir APIs y aplicaciones web  
+- 📝 **TypeScript**  - Lenguaje base fuertemente tipado
+- 🐬 **MySQL** - Base de datos relacional
+- 📕 **Sequelize** - ORM
+- 🐳 **Docker** - Herramienta de conteneirización 
+- 🤖 **Jenkins** - Integración continua y despliegue automatizado (CI/CD)
+- 🐧 **Linux**  - Sistema operativo del servidor de despliegue
+- 🟩 **Nginx Proxy Manager**  - Reverse proxy
 
 ---
 
@@ -56,6 +58,19 @@ El backend está **desplegado y accesible** en la ruta:
 
 ---
 
+## 🤖 CI/CD con Jenkins
+
+Este proyecto cuenta con **integración continua y despliegue automático** usando **Jenkins**:
+
+- 🔹 **Pipeline 1:** Build del backend  
+  - Ejecuta el build de TypeScript y publicación den Docker Hub.  
+- 🔹 **Pipeline 2:** Despliegue automático  
+  - Publica la aplicación en el servidor Linux usando Docker y Nginx Proxy Manager.  
+
+Esto permite que cualquier cambio en el repositorio se **pruebe y despliegue automáticamente**, manteniendo el backend siempre actualizado.
+
+---
+
 ## 📝 Endpoints principales
 
 ### Productos
@@ -78,3 +93,4 @@ El backend está **desplegado y accesible** en la ruta:
 ![GitHub last commit](https://img.shields.io/github/last-commit/Charly3012/inventory-api?style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Charly3012/inventory-api?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/Charly3012/inventory-api?style=for-the-badge)
+
