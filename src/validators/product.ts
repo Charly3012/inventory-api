@@ -1,6 +1,7 @@
 import { check } from "express-validator";
 import { Request, Response, NextFunction } from "express";
 import { validateResult } from "../utils/validateHelper";
+import { CategoryEnum } from "../models/ENUMS/CategoryEnum";
 
 const validateCreate = [
     check('name')
@@ -27,6 +28,12 @@ const validateCreate = [
     check('categoryId')
     .isInt({ gt: 0 })
     .withMessage('Category ID must be a positive integer'),
+
+    check('categoryEnum')
+    .isString()
+    .withMessage('Category enum field must be string')
+    .isIn([...Object.values(CategoryEnum)])
+    .withMessage('Category invalid'),
 
     (req: Request, res: Response, next: NextFunction) => {
         validateResult(req, res, next);

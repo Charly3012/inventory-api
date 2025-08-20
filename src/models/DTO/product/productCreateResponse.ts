@@ -1,3 +1,5 @@
+import { CategoryEnum } from "../../ENUMS/CategoryEnum";
+
 export interface ProductCreateResponse {
     id: number;
     name: string;
@@ -6,6 +8,8 @@ export interface ProductCreateResponse {
     price: number;
     description?: string | null;
     categoryId: number;
-    imgUrl?: string | null;     createdAt: Date;
+    imgUrl?: string | null; 
+    categoryEnum: CategoryEnum;    
+    createdAt: Date;
     updatedAt: Date;
 }

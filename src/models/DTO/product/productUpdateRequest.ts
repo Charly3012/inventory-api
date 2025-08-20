@@ -1,3 +1,5 @@
+import { CategoryEnum } from "../../ENUMS/CategoryEnum";
+
 export interface ProductUpdateRequest {
     SKU: string;
     name: string;
@@ -5,4 +7,6 @@ export interface ProductUpdateRequest {
     price: number;
     description?: string | null;
     categoryId: number;
-    imgUrl?: string | null; }
+    categoryEnum: CategoryEnum;
+    imgUrl?: string | null; 
+}

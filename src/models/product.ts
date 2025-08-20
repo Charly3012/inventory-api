@@ -1,5 +1,6 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo, Unique, AllowNull, Default } from "sequelize-typescript";
 import { Category } from "./category";
+import { CategoryEnum } from "./ENUMS/CategoryEnum";
 
 @Table({
     tableName: "products",
@@ -60,6 +61,13 @@ export class Product extends Model {
         type: DataType.BOOLEAN
     })
     declare isActive: boolean;
+
+    @AllowNull(false)
+    @Column({
+        defaultValue: CategoryEnum.SIN_CATEGORIA,
+        type: DataType.ENUM(...Object.values(CategoryEnum))
+    })
+    declare categoryEnum: CategoryEnum; 
 
     // FK → Category
     @ForeignKey(() => Category)

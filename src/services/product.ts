@@ -29,6 +29,7 @@ const getProductsPaginated = async (page: number, limit: number, search: string)
         price: product.price,
         description: product.description ?? null,
         imgUrl: product.imgUrl ?? null,
+        categoryEnum: product.categoryEnum,
         categoryId: product.categoryId,
         createdAt: product.createdAt
     }));
@@ -54,6 +55,7 @@ const getProductById = async (id: number): Promise<ProductGetResponse | null> =>
         description: product.description ?? null,
         categoryId: product.categoryId,
         imgUrl: product.imgUrl ?? null,
+        categoryEnum: product.categoryEnum,
         createdAt: product.createdAt
     };
 }
@@ -70,7 +72,8 @@ const createProduct = async (data: ProductCreateRequest): Promise<ProductCreateR
         price: data.price,
         description: data.description ?? null,
         categoryId: data.categoryId,
-        imgUrl: data.imgUrl ?? null
+        imgUrl: data.imgUrl ?? null,
+        categoryEnum: data.categoryEnum
     });
     if (!product) return null;
 
@@ -83,6 +86,7 @@ const createProduct = async (data: ProductCreateRequest): Promise<ProductCreateR
         description: product.description ?? null,
         categoryId: product.categoryId,
         imgUrl: product.imgUrl ?? null,
+        categoryEnum: product.categoryEnum,
         createdAt: product.createdAt!,
         updatedAt: product.updatedAt!,
     };
@@ -124,6 +128,7 @@ const updateProduct = async (id: number, data: Partial<ProductCreateRequest>): P
         description: data.description ?? product.description,
         categoryId: data.categoryId ?? product.categoryId,
         imgUrl: product.imgUrl ?? null,
+        categoryEnum: product.categoryEnum,
         createdAt: product.createdAt,
         updatedAt: product.updatedAt
     };
