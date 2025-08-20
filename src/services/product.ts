@@ -4,15 +4,21 @@ import { PaginatedResult } from "../models/DTO/utils/PaginatedResult";
 import { ProductCreateRequest } from "../models/DTO/product/productCreateRequest";
 import { ProductCreateResponse } from "../models/DTO/product/productCreateResponse";
 import { ProductGetResponse } from "../models/DTO/product/productGetReponse";
+import { Op } from "sequelize";
 
-const getProductsPaginated = async (page: number, limit: number): Promise<PaginatedResult<ProductGetResponse>> => {
+const getProductsPaginated = async (page: number, limit: number, search: string): Promise<PaginatedResult<ProductGetResponse>> => {
     const offset = (page - 1) * limit;
+    const whereClause: any = { isActive: true };
+
+    if (search) {
+      whereClause.name = { [Op.like]: `%${search}%` };
+    }
 
     const { count, rows } = await Product.findAndCountAll({
+        where: whereClause,
         limit,
         offset,
         order: [["name", "ASC"]],
-        where: { isActive: true }
     });
 
     const items: ProductGetResponse[] = rows.map(product => ({
