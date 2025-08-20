@@ -48,6 +48,12 @@ export class Product extends Model {
     })
     declare description: string | null;
 
+    @Column({
+        type: DataType.STRING(500),
+        allowNull: true,
+    })
+    declare imgUrl: string | null;
+
     @Default(true)
     @AllowNull(false)
     @Column({
@@ -65,4 +71,4 @@ export class Product extends Model {
 
     @BelongsTo(() => Category)
     declare category: Category;
-    }
+}

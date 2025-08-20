@@ -11,7 +11,7 @@ const getProductsPaginated = async (page: number, limit: number): Promise<Pagina
     const { count, rows } = await Product.findAndCountAll({
         limit,
         offset,
-        order: [["createdAt", "DESC"]],
+        order: [["name", "ASC"]],
         where: { isActive: true }
     });
 
@@ -22,6 +22,7 @@ const getProductsPaginated = async (page: number, limit: number): Promise<Pagina
         quantity: product.quantity,
         price: product.price,
         description: product.description ?? null,
+        imgUrl: product.imgUrl ?? null,
         categoryId: product.categoryId,
         createdAt: product.createdAt
     }));
@@ -46,6 +47,7 @@ const getProductById = async (id: number): Promise<ProductGetResponse | null> =>
         price: product.price,
         description: product.description ?? null,
         categoryId: product.categoryId,
+        imgUrl: product.imgUrl ?? null,
         createdAt: product.createdAt
     };
 }
@@ -62,6 +64,7 @@ const createProduct = async (data: ProductCreateRequest): Promise<ProductCreateR
         price: data.price,
         description: data.description ?? null,
         categoryId: data.categoryId,
+        imgUrl: data.imgUrl ?? null
     });
     if (!product) return null;
 
@@ -73,6 +76,7 @@ const createProduct = async (data: ProductCreateRequest): Promise<ProductCreateR
         price: product.price,
         description: product.description ?? null,
         categoryId: product.categoryId,
+        imgUrl: product.imgUrl ?? null,
         createdAt: product.createdAt!,
         updatedAt: product.updatedAt!,
     };
@@ -113,6 +117,7 @@ const updateProduct = async (id: number, data: Partial<ProductCreateRequest>): P
         price: data.price ?? product.price,
         description: data.description ?? product.description,
         categoryId: data.categoryId ?? product.categoryId,
+        imgUrl: product.imgUrl ?? null,
         createdAt: product.createdAt,
         updatedAt: product.updatedAt
     };

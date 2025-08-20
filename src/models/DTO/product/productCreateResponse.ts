@@ -6,6 +6,6 @@ export interface ProductCreateResponse {
     price: number;
     description?: string | null;
     categoryId: number;
-    createdAt: Date;
+    imgUrl?: string | null;     createdAt: Date;
     updatedAt: Date;
 }

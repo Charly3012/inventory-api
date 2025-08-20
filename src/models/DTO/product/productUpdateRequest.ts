@@ -5,4 +5,4 @@ export interface ProductUpdateRequest {
     price: number;
     description?: string | null;
     categoryId: number;
-}
+    imgUrl?: string | null; }

@@ -6,6 +6,7 @@ export interface ProductUpdateResponse {
     price: number;
     description?: string | null;
     categoryId: number;
+    imgUrl?: string | null; 
     createdAt: Date;
     updatedAt: Date;
 }

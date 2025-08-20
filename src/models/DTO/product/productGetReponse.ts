@@ -6,5 +6,6 @@ export interface ProductGetResponse {
     price: number;
     description?: string | null;
     categoryId: number;
+    imgUrl?: string | null; 
     createdAt: Date;
 }
