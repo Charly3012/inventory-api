@@ -13,7 +13,7 @@ const getCategoriesPaginated = async (page: number, limit: number): Promise<Pagi
     const { count, rows } = await Category.findAndCountAll({
         limit,
         offset,
-        order: [["createdAt", "DESC"]],
+        order: [["name", "ASC"]],
         where: { isActive: true }
     });
 
