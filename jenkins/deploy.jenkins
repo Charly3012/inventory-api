@@ -1,0 +1,54 @@
+pipeline{
+    agent any
+
+    environment {
+        REMOTE_HOST = 'Backend-uady'
+        IMAGE_NAME = 'charly3012/inventory-back:latest'
+        CONTAINER_NAME = 'inventory-back'
+        PORT_MAPPING = '-p 8085:3001'
+        DB_HOST = '10.0.0.95'
+        REMOTE_ENV_PATH = '/tmp/inventory.env'
+    }
+    
+    stages{
+        stage('Set environment variables') {
+            steps {
+                withCredentials([file(credentialsId: 'inventory-api-env', variable: 'ENV_FILE')]) {
+                    echo "Enviando archivo .env al servidor remoto..."
+                    sh """
+                        scp -o StrictHostKeyChecking=no \$ENV_FILE ${REMOTE_HOST}:${REMOTE_ENV_PATH}
+                    """
+                }
+            }
+        }
+
+
+        stage('SSH deploy'){
+            steps{    
+                sh """
+                    
+
+                    ssh ${REMOTE_HOST} << EOF
+                    
+                    docker stop ${CONTAINER_NAME} 2>/dev/null || echo "old container did not exist runing"
+                    docker rm ${CONTAINER_NAME} 2>/dev/null || echo "old container did not exist"
+
+                    docker pull ${IMAGE_NAME} || { echo "Error doing pull"; exit 1; }
+
+                    docker run -d \\
+                        --name ${CONTAINER_NAME} \\
+                        ${PORT_MAPPING} \\
+                        --env-file ${REMOTE_ENV_PATH} \\
+                        ${IMAGE_NAME} || { echo "Error runing new container"; exit 1; }
+
+                    echo "Limpiando archivo .env remoto"
+                    rm -f ${REMOTE_ENV_PATH}
+                    
+                    exit
+                    EOF
+                """
+            }
+        }
+    }
+
+}
